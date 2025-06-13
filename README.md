@@ -26,15 +26,7 @@ Tested with **Postman** as a fake frontend.
 
 ## 📁 Folder Structure
 
-simple-blog-backend/
-├── index.js
-├── routes/
-│ └── posts.js
-├── models/
-│ └── Post.js
-├── package.json
-├── node_modules/
-├── screenshots/ # Postman API test screenshots
+<pre> ```plaintext simple-blog-backend/ ├── index.js ├── routes/ │ └── posts.js ├── models/ │ └── Post.js ├── package.json ├── node_modules/ ├── screenshots/ # Postman API test screenshots ``` </pre>
 
 
 ## 🚀 Getting Started
