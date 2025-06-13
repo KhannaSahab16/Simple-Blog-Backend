@@ -26,7 +26,16 @@ Tested with **Postman** as a fake frontend.
 
 ## 📁 Folder Structure
 
-<pre> ```plaintext simple-blog-backend/ ├── index.js ├── routes/ │ └── posts.js ├── models/ │ └── Post.js ├── package.json ├── node_modules/ ├── screenshots/ # Postman API test screenshots ``` </pre>
+<pre> ```
+simple-blog-backend/
+├── index.js
+├── routes/
+│ └── posts.js
+├── models/
+│ └── Post.js
+├── package.json
+├── node_modules/
+├── screenshots/ # Postman API test screenshots``` </pre>
 
 
 ## 🚀 Getting Started
@@ -49,7 +58,8 @@ npm install
 node index.js
 Server will run on: http://localhost:3000 (default)
 
-🧪 API Testing
+# 🧪 API Testing
+
 Use Postman to test API endpoints:
 | Method | Endpoint     | Description            |
 | ------ | ------------ | ---------------------- |
