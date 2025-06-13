@@ -26,7 +26,7 @@ Tested with **Postman** as a fake frontend.
 
 ## 📁 Folder Structure
 
-<pre> ```
+<pre> 
 simple-blog-backend/
 ├── index.js
 ├── routes/
@@ -35,7 +35,7 @@ simple-blog-backend/
 │ └── Post.js
 ├── package.json
 ├── node_modules/
-├── screenshots/ # Postman API test screenshots``` </pre>
+├── screenshots/ # Postman API test screenshots </pre>
 
 
 ## 🚀 Getting Started
@@ -48,14 +48,19 @@ simple-blog-backend/
 ### Installation & Run (In GitBash / CMD Terminal)
 
 # Clone this repo
+
 git clone https://github.com/KhannaSahab16/Simple-Blog-Backend.git
+
 cd Simple-Blog-Backend
 
 # Install dependencies
+
 npm install
 
 # Start the server
+
 node index.js
+
 Server will run on: http://localhost:3000 (default)
 
 # 🧪 API Testing
