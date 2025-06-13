@@ -34,7 +34,7 @@ simple-blog-backend/
 │ └── Post.js
 ├── package.json
 ├── node_modules/
-├── screenshots/ # Contains Postman API test screenshots
+├── screenshots/ # Postman API test screenshots
 
 
 ## 🚀 Getting Started
@@ -57,6 +57,8 @@ npm install
 node index.js
 Server will run on: http://localhost:3000 (default)
 
+🧪 API Testing
+Use Postman to test API endpoints:
 | Method | Endpoint     | Description            |
 | ------ | ------------ | ---------------------- |
 | POST   | `/posts`     | Create a new blog post |
