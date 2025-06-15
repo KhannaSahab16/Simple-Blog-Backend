@@ -37,6 +37,7 @@ simple-blog-backend/
 ├── node_modules/
 ├── screenshots/ # Postman API test screenshots </pre>
 
+--- 
 
 ## 🚀 Getting Started
 
@@ -47,23 +48,25 @@ simple-blog-backend/
 
 ### Installation & Run (In GitBash / CMD Terminal)
 
-# Clone this repo
+#### Clone this repo
 
-git clone https://github.com/KhannaSahab16/Simple-Blog-Backend.git
+- git clone https://github.com/KhannaSahab16/Simple-Blog-Backend.git
 
-cd Simple-Blog-Backend
+- cd Simple-Blog-Backend
 
-# Install dependencies
+#### Install dependencies
 
-npm install
+- npm install
 
-# Start the server
+#### Start the server
 
-node index.js
+- node index.js
 
 Server will run on: http://localhost:3000 (default)
 
-# 🧪 API Testing
+---
+
+## 🧪 API Testing
 
 Use Postman to test API endpoints:
 | Method | Endpoint     | Description            |
