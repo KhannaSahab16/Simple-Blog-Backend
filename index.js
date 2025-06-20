@@ -1,18 +1,21 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const authRoutes = require("./routes/auth");
 const postRoutes = require("./routes/posts");
 
 const app = express();
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/blogdb", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("✅ Connected to MongoDB"))
-.catch((err) => console.error("❌ MongoDB Error:", err));
+mongoose.connect("mongodb://localhost:27017/simple-blog-v2")
+  .then(() => console.log("MongoDB Connected"));
+mongoose.connection.on("error", (err) => {
+  console.error(`MongoDB connection error: ${err.message}`);
+});
+
 
 app.use("/api/posts", postRoutes);
+
+app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("🚀 Simple Blog Backend is Running");

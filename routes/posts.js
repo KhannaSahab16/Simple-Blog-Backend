@@ -1,44 +1,85 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/Post");
+const { protect } = require("../middleware/authMiddleware");
 
 // Create post
-router.post("/", async (req, res) => {
+router.post("/", protect, async (req, res) => {
   try {
-    const post = await Post.create(req.body);
-    res.status(201).json(post);
+    const { title, content } = req.body;
+
+    const newPost = new Post({
+      title,
+      content,
+      author: req.user._id // ✅ Critical line
+    });
+
+    const savedPost = await newPost.save();
+    res.status(201).json(savedPost);
   } catch (err) {
-    res.status(500).json({ error: "Failed to create post" });
+    res.status(500).json({ message: err.message });
   }
 });
 
-// Get all posts
 router.get("/", async (req, res) => {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().populate("author", "username email");
     res.json(posts);
   } catch (err) {
-    res.status(500).json({ error: "Failed to fetch posts" });
+    res.status(500).json({ message: err.message });
   }
 });
 
-// Update post
-router.put("/:id", async (req, res) => {
+// ✅ GET a specific post by :id
+router.get("/:id", async (req, res) => {
   try {
-    const updated = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const post = await Post.findById(req.params.id).populate("author", "username email");
+
+    if (!post) return res.status(404).json({ message: "Post not found" });
+
+    res.json(post);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.put("/:id", protect, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (!post) return res.status(404).json({ message: "Post not found" });
+
+    // ✅ Ownership check
+   if (!post.author || post.author.toString() !== req.user._id.toString()) {
+  return res.status(403).json({ message: "Not allowed to update this post" });
+}
+
+    post.title = req.body.title || post.title;
+    post.content = req.body.content || post.content;
+
+    const updated = await post.save();
     res.json(updated);
   } catch (err) {
-    res.status(500).json({ error: "Failed to update post" });
+    res.status(500).json({ message: err.message });
   }
 });
 
-// Delete post
-router.delete("/:id", async (req, res) => {
+// ❌ Delete Post (Only author)
+router.delete("/:id", protect, async (req, res) => {
   try {
-    await Post.findByIdAndDelete(req.params.id);
+    const post = await Post.findById(req.params.id);
+
+    if (!post) return res.status(404).json({ message: "Post not found" });
+
+    // ✅ Ownership check
+    if (!post.author || post.author.toString() !== req.user._id.toString()) {
+  return res.status(403).json({ message: "Not allowed to delete this post" });
+}
+
+    await post.deleteOne();
     res.json({ message: "Post deleted" });
   } catch (err) {
-    res.status(500).json({ error: "Failed to delete post" });
+    res.status(500).json({ message: err.message });
   }
 });
 
