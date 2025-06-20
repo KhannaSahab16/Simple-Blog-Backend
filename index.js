@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth");
 const postRoutes = require("./routes/posts");
+const commentRoutes = require("./routes/comments");
 
 const app = express();
 app.use(express.json());
@@ -14,8 +15,8 @@ mongoose.connection.on("error", (err) => {
 
 
 app.use("/api/posts", postRoutes);
-
 app.use("/api/auth", authRoutes);
+app.use("/api/comments", commentRoutes);
 
 app.get("/", (req, res) => {
   res.send("🚀 Simple Blog Backend is Running");
