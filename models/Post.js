@@ -9,6 +9,15 @@ const postSchema = new mongoose.Schema({
     required: true,
   }
 }, { timestamps: true });
+postSchema.virtual("formattedDate").get(function () {
+  return new Date(this.createdAt).toLocaleString("en-IN", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+});
+
+postSchema.set("toJSON", { virtuals: true });
+postSchema.set("toObject", { virtuals: true });
 
 module.exports = mongoose.model("Post", postSchema);
 
