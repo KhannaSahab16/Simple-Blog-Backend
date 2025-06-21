@@ -6,7 +6,7 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
 
-// 🧑‍💼 Get all users
+
 router.get("/users", protect, adminOnly, async (req, res) => {
   try {
     const users = await User.find().select("-password").lean();
