@@ -7,13 +7,13 @@ const {
   deleteComment,
 } = require("../controllers/commentController");
 
-// 🔐 Add comment
+
 router.post("/", protect, createComment);
 
-// 📄 Get comments for a post
+
 router.get("/:postId", getCommentsForPost);
 
-// ❌ Delete comment
+
 router.delete("/:id", protect, deleteComment);
 
 module.exports = router;

@@ -1,8 +1,8 @@
-// controllers/commentController.js
+
 const Comment = require("../models/Comment");
 const Post = require("../models/Post");
 
-// ✅ Add a comment
+
 exports.createComment = async (req, res) => {
   const { content, postId } = req.body;
 
@@ -21,7 +21,7 @@ exports.createComment = async (req, res) => {
   }
 };
 
-// ✅ Get all comments for a post
+
 exports.getCommentsForPost = async (req, res) => {
   try {
     const comments = await Comment.find({ post: req.params.postId })
@@ -42,7 +42,7 @@ exports.deleteComment = async (req, res) => {
 
     const post = await Post.findById(comment.post);
 
-    // ✅ Allow if user is comment author OR post author
+    
     const isCommentAuthor = comment.author.toString() === req.user._id.toString();
     const isPostAuthor = post.author.toString() === req.user._id.toString();
 

@@ -5,8 +5,9 @@ const postSchema = new mongoose.Schema({
   content:  { type: String, required: true },
   author:   {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // Link to User collection
+    ref: "User", 
     required: true,
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }]
   }
 }, { timestamps: true });
 postSchema.virtual("formattedDate").get(function () {
