@@ -84,7 +84,13 @@ simple-blog-backend/
 ├── middleware/
 │   ├── authMiddleware.js
 │   └── adminMiddleware.js
+├── controllers/
+│   ├── authController.js
+│   └── commentController.js
+├── utils/
+│   ├── generateToken.js
 ├── package.json
+├── .env
 ├── node_modules/
 ├── screenshots/ # Postman test screenshots
 </pre>
@@ -163,5 +169,7 @@ All endpoints can be tested via Postman (screenshots inside screenshots/ folder)
 
 
 🧠 Author
+
 Mehul Khanna
+
 🧠 Backend Dev Intern · Clean Architecture Fan · Builder of Bold Ideas
