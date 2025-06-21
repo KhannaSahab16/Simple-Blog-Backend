@@ -3,9 +3,14 @@ const router = express.Router();
 const Post = require("../models/Post");
 const { protect } = require("../middleware/authMiddleware");
 const Comment = require("../models/Comment");
+const User = require("../models/User");
 
 
 router.post("/", protect, async (req, res) => {
+  const user = await User.findById(req.user._id);
+  if (user.isFrozen) {
+    return res.status(403).json({ message: "Your account is frozen. You cannot create posts." });
+  }
   try {
     const { title, content } = req.body;
     
